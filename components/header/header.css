@@ -4,20 +4,14 @@ body {
 
 header {
     border-bottom: 1px solid black;
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: 1fr;
-    gap: 10px;
+    display: flex;
 }
 
 .h_class {
     cursor: pointer;
     font-size: 3vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
+    flex-grow: 1;
+    flex-basis: 0;
 }
 
 nav {
@@ -27,30 +21,21 @@ nav {
 }
 
 .rubrik {
-    font-weight: bolder;
+    font-family: "Inter_bold";
     grid-column: 1;
 
     cursor: not-allowed;
+
+    position: relative;
+    left: 20px;
 }
 
-.all {
-    grid-column: 3;
-}
+header>img {
+    width: 30px;
+    border: none;
 
-.boots {
-    grid-column: 4;
-}
-
-.sneakers {
-    grid-column: 5;
-}
-
-.slippers {
-    grid-column: 6;
-}
-
-.about {
-    grid-column: 8;
+    position: relative;
+    right: 20px;
 }
 
 .shoe_rubrik {

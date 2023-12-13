@@ -6,6 +6,7 @@ function render_header(parent) {
         <div class="h_class sneakers">SNEAKERS</div>
         <div class="h_class slippers">SLIPPERS</div>
         <div class="h_class about">ABOUT US</div>
+        <img src="media/icons/shopping_bag.png" alt="Shopping bag">
     `;
 
     let boots_click = document.querySelector(".boots");
