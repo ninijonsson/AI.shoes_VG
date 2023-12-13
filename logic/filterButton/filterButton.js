@@ -3,7 +3,10 @@
 document.addEventListener('DOMContentLoaded', function () {
 
   const filterButton = document.createElement('button');
-  filterButton.textContent = 'FILTER';
+  filterButton.innerHTML = `
+    <img src="media/icons/filter.png" alt="Filter">
+    FILTER
+  `;
   filterButton.classList.add('filter-button');
 
   const buttonContainer = document.createElement('div');
@@ -24,21 +27,21 @@ document.addEventListener('DOMContentLoaded', function () {
         <h1>FILTER</h1>
         <div class="filter-content-types">
           <div>
-            <h3> Types of Shoes</h3>
-            <span><input type="checkbox">Boots </span>
-            <span><input type="checkbox">Sneakers </span>
-            <span><input type="checkbox">Tofflor </span>
+            <h3> TYPE OF SHOE</h3>
+            <span><input type="checkbox">BOOTS </span>
+            <span><input type="checkbox">SNEAKERS </span>
+            <span><input type="checkbox">TOFFLOR </span>
           </div>
           <div>
-            <h3> Max price </h3>
-            <p> Up to: <input type="number"> KR </p>
+            <h3> MAX PRICE </h3>
+            <p> UP TO: <input type="text" size="5"> KR </p>
           </div>
           <div>
-            <h3> Made In</h3>
-            <span><input type="checkbox">Spain </span>
-            <span><input type="checkbox">Portugal </span>
-            <span><input type="checkbox">United Kingdom </span>
-            <span><input type="checkbox">Sweden </span>
+            <h3> MADE IN</h3>
+            <span><input type="checkbox">SPAIN </span>
+            <span><input type="checkbox">PORTUGAL </span>
+            <span><input type="checkbox">UNITED KINGDOM </span>
+            <span><input type="checkbox">SWEDEN </span>
           </div>
         </div>
     `;
