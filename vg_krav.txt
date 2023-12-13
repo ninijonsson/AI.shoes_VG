@@ -1,0 +1,13 @@
+SORTERING
+Listan av skorna måste kunna sorteras enligt pris och tillverkningsland. Den ska kunna sorteras stigande (pris: billigast först; land: alfabetisk
+ordning) och sjunkande (pris: dyrast först, land: omvänt alfabetisk ordning).
+
+PRODUKTDETALJ
+Utöver informationen som redan finns i G-kraven måste detaljinformationen inkludera vilka storlekar som skon finns i.
+
+LÄGGA I VARUKORGEN
+Det ska gå att lägga en produkt i varukorgen. Notera att man på något sätt måste ange vilken skostorlek som läggs till i korgen.
+Man ska kunna se vilka produkter man har lagt i korgen och ta bort produkter från varukorgen.
+
+REDOVISNING
+Studenter som önskar få VG i projektet måste redovisa individuellt. Se mer info nedan.
