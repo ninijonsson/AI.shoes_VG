@@ -1,2 +1,1 @@
-# AI.shoes_VG
- 
+# AI.shoes
