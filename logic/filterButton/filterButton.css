@@ -18,8 +18,8 @@
     margin: 2vw 5vw;
     padding: 5px;
     display: flex;
-    justify-content: end;
     border-bottom: #00000057 1px solid;
+    justify-content: space-between;
 }
 
 button>img {
@@ -28,7 +28,17 @@ button>img {
     padding-right: 6px;
 }
 
+.sortByContainer {
+    display: flex;
+    align-items: end;
+    margin-bottom: 6px;
+}
 
+.sortByContainer p {
+    font-family: "Inter_bold";
+    margin-bottom: 0;
+    margin-right: 10px;
+}
 
 
 .filter-popup {
