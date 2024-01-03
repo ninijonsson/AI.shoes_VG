@@ -5,14 +5,14 @@ body {
 header {
     border-bottom: 1px solid black;
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(9, 1fr);
     grid-template-rows: 1fr;
     gap: 10px;
 }
 
 .h_class {
     cursor: pointer;
-    font-size: 3vh;
+    font-size: 22px;
 
     display: flex;
     justify-content: center;
@@ -31,6 +31,7 @@ nav {
 .rubrik {
     font-weight: bolder;
     grid-column: 1;
+    justify-self: center;
 
     cursor: not-allowed;
     font-family: "Inter_bold";
@@ -53,7 +54,7 @@ nav {
 }
 
 .about {
-    grid-column: 8;
+    grid-column: 7;
 }
 
 .shoe_rubrik {
@@ -66,7 +67,7 @@ nav {
 }
 
 
-/* Css för About Us pop-up */
+/* CSS för About Us pop-up */
 .about_popup {
     height: 100vh;
 
@@ -136,9 +137,13 @@ nav {
 
     cursor: pointer;
     font-size: 3vh;
+}
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
+.shopping_cart {
+    border: none;
+    width: 28px;
+    padding-right: 10px;
+
+    grid-column: 9;
+    justify-self: end;
 }

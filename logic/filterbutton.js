@@ -1,18 +1,35 @@
 "use strict"
 
-document.addEventListener('DOMContentLoaded', function () {
+function renderFilterButton(parent) {
+  const buttonContainer = document.createElement('div');
 
   const filterButton = document.createElement('button');
-  filterButton.textContent = 'FILTER';
+  filterButton.innerHTML = `
+    <img src="media/icons/filter.png" alt="filter button">
+    <p>FILTER</p>
+  `;
   filterButton.classList.add('filter-button');
 
-  const buttonContainer = document.createElement('div');
+  const sortBy = document.createElement("div");
+  sortBy.classList.add("sortByContainer");
+  buttonContainer.appendChild(sortBy);
+
+  sortBy.innerHTML = `
+  <p><b>SORT BY: </b></p>
+  <select id="sort_by">
+      <option value="lowestPrice">PRICE: LOW TO HIGH PRICE</option>
+      <option value="highestPrice">PRICE: HIGH TO LOW PRICE</option>
+      <option value="alphabeticalOrder">COUNTRY OF PRODUCTION: A TO Z</option>
+      <option value="reverseOrder">COUNTRY OF PRODUCTION: Z TO A</option>
+  </select>
+  `;
+
   buttonContainer.classList.add('filter-container');
   buttonContainer.appendChild(filterButton);
 
-  const header = document.querySelector('nav');
-  if (header) {
-    header.parentNode.insertBefore(buttonContainer, header.nextSibling);
+  const container = document.querySelector('#top');
+  if (container) {
+    container.parentNode.insertBefore(buttonContainer, container.nextSibling);
   }
 
   const filterPopup = document.createElement('div');
@@ -50,9 +67,10 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   const closeButton = filterPopup.querySelector('.close-button');
+
   closeButton.addEventListener('click', function () {
     filterPopup.style.display = 'none';
   });
-});
+};
 
 

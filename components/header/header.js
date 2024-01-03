@@ -14,6 +14,11 @@ function render_header(parent) {
     aboutUs.classList.add("about");
     parent.appendChild(aboutUs);
 
+    const shoppingCart = document.createElement("img");
+    shoppingCart.classList.add("shopping_cart");
+    shoppingCart.src = "media/icons/shopping_bag.png";
+    parent.appendChild(shoppingCart);
+
     // parent.innerHTML = `
     //     <div class="h_class rubrik">AI.shoes</div>
     //     <div class="h_class all">ALL</div>
