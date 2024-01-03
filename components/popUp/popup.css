@@ -24,6 +24,9 @@
     width: 70vw;
     height: 70vh;
 
+    overflow-y: scroll;
+    scrollbar-width: thin;
+
     background-color: white;
     padding: 40px;
     border-radius: 5px;
@@ -32,7 +35,7 @@
 .content {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr;
     gap: 30px;
 }
 
@@ -67,4 +70,58 @@
 
     cursor: pointer;
     font-size: 32px;
+}
+
+#reviews {
+    margin: 20px 0 20px 0;
+}
+
+#reviewh1 {
+    margin: 0;
+    padding-top: 20px;
+    border-top: 1px solid rgb(169, 169, 169);
+}
+
+#stars {
+    width: 170px;
+    font-family: "Inter_bold";
+}
+
+
+
+.star {
+    background-color: unset;
+    border: none;
+    font-size: 1.1rem;
+}
+
+.comment {
+    margin: 40px 0 40px 0;
+    display: flex;
+    gap: 3vw;
+    font-family: "Inter";
+}
+
+.filled-star {
+    color: black;
+    /* Adjust color for filled stars */
+}
+
+.empty-star {
+    color: #ccc;
+    /* Adjust color for empty stars */
+}
+
+.review-content {
+    width: 500px;
+    font-size: 0.9rem;
+}
+
+.review-content p {
+    margin: 0;
+}
+
+.review-info {
+    font-size: 0.9rem;
+    margin-left: 3rem;
 }

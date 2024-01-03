@@ -4,44 +4,61 @@ body {
 
 header {
     border-bottom: 1px solid black;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 1fr;
+    gap: 10px;
 }
 
 .h_class {
     cursor: pointer;
     font-size: 3vh;
-    flex-grow: 1;
-    flex-basis: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    grid-row: 1;
 }
 
 nav {
     display: flex;
     flex-direction: column;
-    margin: 10px 200px;
-    margin-bottom: 50px;
+    margin: 10px 90px;
+    margin-top: 28px;
 }
 
 .rubrik {
-    font-family: "Inter_bold";
+    font-weight: bolder;
     grid-column: 1;
 
     cursor: not-allowed;
-
-    position: relative;
-    left: 20px;
+    font-family: "Inter_bold";
 }
 
-header>img {
-    width: 30px;
-    border: none;
+.all {
+    grid-column: 3;
+}
 
-    position: relative;
-    right: 20px;
+.boots {
+    grid-column: 4;
+}
+
+.sneakers {
+    grid-column: 5;
+}
+
+.slippers {
+    grid-column: 6;
+}
+
+.about {
+    grid-column: 8;
 }
 
 .shoe_rubrik {
     font-size: 50px;
-    margin: 40px 0 5px 0;
+    margin: 10px 0;
 }
 
 .info_shoe {
@@ -110,4 +127,18 @@ header>img {
 
 .popup_h1 {
     margin: 0;
+}
+
+.selected {
+    text-decoration: underline;
+    text-underline-offset: 8px;
+    text-decoration-thickness: 2px;
+
+    cursor: pointer;
+    font-size: 3vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
 }

@@ -1,3 +1,5 @@
+DEADLINE: 9/1 17.00
+
 SORTERING
 Listan av skorna måste kunna sorteras enligt pris och tillverkningsland. Den ska kunna sorteras stigande (pris: billigast först; land: alfabetisk
 ordning) och sjunkande (pris: dyrast först, land: omvänt alfabetisk ordning).
@@ -11,3 +13,18 @@ Man ska kunna se vilka produkter man har lagt i korgen och ta bort produkter fr�
 
 REDOVISNING
 Studenter som önskar få VG i projektet måste redovisa individuellt. Se mer info nedan.
+
+Utöver reflektionen som ingick i G-kraven måste studenten lämna in en zip-fil som ska inkludera:
+• Alla HTML-, CSS- och JS-filer som ingår i appen, inklusive de som behövs för G
+• Eventuella övriga bilder som används i appen (INTE sko-bilderna)
+• En readme-fil med info om:
+• Länken till din VG-app på webben.
+• Länken till Github-repo där du har jobbat med VG-kraven.
+Utöver inlämningen måste du redovisa din kod (planerat datum: torsdag 11/01).
+OBS: Din version av appen behöver inte vara exakt som din grupps G-version.
+
+
+REFLEKTIONEN
+Varje gruppmedlem måste lämna in en reflektion (pdf-fil) om hens arbete i projektet. Reflektionen ska inkludera: Ditt bidrag till koden, ditt
+bidrag till att skapa en trivsam och fungerande grupp, vad du borde ha gjort annorlunda (och varför det blev som det blev), vad som har
+fungerat bra i projektets upplägg samt hur projektupplägget kan förbättras inför nästa år. Reflektionen ska ha mellan 400 och 600 ord.
