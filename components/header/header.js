@@ -122,8 +122,8 @@ function f5(event) {
             <img src="media/images_aboutus/niagara.jpg" alt="Malmö Universitet" class="about_popup_image">
             <div class="about_textcontent">
                 <h1 class="popup_h1">Malmö Universitet</h1>
-                <h3 class="popup_h3">Webbaserad design & Utveckling</h3>
-                <h4 class="popup_h4">JAVASCRIPT - DU2</h4>
+                <h3 class="popup_h3">Medieteknik: Webbaserad design & utveckling</h3>
+                <h4 class="popup_h4">Individuell inlämning, Nicole Jonsson</h4>
             </div>
         </div>
     </div>
