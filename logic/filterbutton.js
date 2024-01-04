@@ -67,4 +67,31 @@ function renderFilterButton(parent) {
   });
 };
 
+// const sortBySelected = document.querySelector('#sort_by');
+// sortBySelected.addEventListener('change', function () {
+//   sortBy();
+// });
 
+// function sortBy(options) {
+//   var selectElement = document.getElementById("sort_by");
+//   var selectedValue = selectElement.value;
+
+//   // Remove existing shoe list items
+//   var shoesList = document.getElementById("shoesList");
+//   while (shoesList.firstChild) {
+//     shoesList.removeChild(shoesList.firstChild);
+//   }
+
+//   // Add sorted shoes to the list
+//   shoes.forEach(function (shoe) {
+//     var listItem = document.createElement("li");
+//     listItem.textContent = shoe.name + ' - $' + shoe.price;
+//     shoesList.appendChild(listItem);
+//   });
+// }
+
+// // Initial sorting
+// sortShoes();
+
+// // Add an event listener to the select element
+// document.getElementById("sort_by").addEventListener("change", sortShoes);
