@@ -1,0 +1,15 @@
+.checkout {
+    border: 1px solid black;
+    margin: 28px 0;
+    margin-bottom: 0;
+    padding: 0px 10px;
+    width: fit-content;
+    color: whitesmoke;
+    background-color: black;
+}
+
+.checkout:hover {
+    background-color: whitesmoke;
+    color: black;
+    cursor: pointer;
+}

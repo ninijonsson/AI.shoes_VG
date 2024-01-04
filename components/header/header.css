@@ -130,13 +130,12 @@ nav {
     margin: 0;
 }
 
-.selected {
+header .selected {
     text-decoration: underline;
     text-underline-offset: 8px;
     text-decoration-thickness: 2px;
 
     cursor: pointer;
-    font-size: 3vh;
 }
 
 .shopping_cart {

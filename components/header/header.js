@@ -23,24 +23,24 @@ function render_header(parent) {
     shoppingPopup.classList.add("shopping_popup");
 
     shoppingPopup.innerHTML = `
-    <div class="shopping_content">
-      <span class="close_button">x</span>
-      <h1>YOUR CART</h1>
-      <div class="shoes_in_cart">
-        <div>
-          <h3>Shoe</h3>
-          <p>300 kr</p>
+        <div class="shopping_content">
+          <span class="close_button">x</span>
+          <h1>YOUR CART</h1>
+          <div class="shoes_in_cart">
+            <div>
+              <h3>Shoe</h3>
+              <p>300 kr</p>
+            </div>
+          </div>
+          <div class="total">
+            <h3>Total</h3>
+            <p>300 kr</p>
+          </div>
+          <div class="checkout">
+            <p>CHECKOUT</p>
+          </div>
         </div>
-      </div>
-      <div class="total">
-        <h3>Total</h3>
-        <p>300 kr</p>
-      </div>
-      <div class="checkout">
-        <button>Checkout</button>
-      </div>
-    </div>
-  `;
+      `;
 
     document.body.appendChild(shoppingPopup);
 

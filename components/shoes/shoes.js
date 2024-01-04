@@ -63,7 +63,6 @@ function renderShoes(parent, shoe) {
               </div>
             </div>           
           </div>
-        
           
           <div id="reviews">
             <div>
@@ -91,14 +90,13 @@ function renderShoes(parent, shoe) {
     const sizeBoxes = document.querySelectorAll(".size-box");
 
     sizeBoxes.forEach(function (sizeBox) {
-      sizeBox.addEventListener('click', function () {
+      sizeBox.addEventListener("click", function () {
 
         sizeBoxes.forEach(function (box) {
-
-          box.classList.remove("change");
+          box.classList.remove("selected_shoe");
         });
 
-        sizeBox.classList.add("change");
+        sizeBox.classList.add("selected_shoe");
       });
     });
 
@@ -152,5 +150,11 @@ function renderShoes(parent, shoe) {
       return `<span class="star ${starStyle}">&#9733;</span>`;
     }).join("");
   }
+
+  // Event listener till "add to cart"-knapp
+  // const cartContainer = document.querySelector(".addtocart");
+  // cartContainer.addEventListener("click", function (shoe) {
+  //   inCart.push(shoe);
+  // });
 }
 

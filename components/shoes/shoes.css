@@ -109,8 +109,7 @@ h2 {
     transform-origin: bottom right;
 }
 
-
-.change {
+.selected_shoe {
     background-color: black;
     color: whitesmoke;
 }
