@@ -1,13 +1,16 @@
 "use strict"
 
 function renderFilterButton(parent) {
-  const buttonContainer = document.createElement('div');
+  // Container till knapp
+  const buttonContainer = document.createElement("div");
 
+  // Skapar knappen och vad som står på knappen med innerHTML
   const filterButton = document.createElement('button');
   filterButton.innerHTML = `
     <img src="media/icons/filter.png" alt="filter button">
     <p>FILTER</p>
   `;
+  // Lägger till en klass till knappen för att kunna styla i CSS
   filterButton.classList.add('filter-button');
 
   const sortBy = document.createElement("div");
@@ -42,14 +45,18 @@ function renderFilterButton(parent) {
         <div class="filter-content-types">
           <div>
             <h3>MAX PRICE</h3>
-            <p> Up to: <input type="text" class="input-price"> KR </p>
+            <p> Up to: <input type="text" class="input-price" value="2000"> KR </p>
           </div>
           <div>
             <h3>MADE IN</h3>
-            <label for="Spain"><input id="Spain" class="input-box" type="checkbox"> Spain </label>
-            <label for="Portugal"><input id="Portugal" class="input-box" type="checkbox"> Portugal </label><br>
-            <label for="Kingdom"><input id="Kingdom" class="input-box" type="checkbox"> United Kingdom </label><br>
-            <label for="Sweden"><input id="Sweden" class="input-box" type="checkbox"> Sweden </label>
+            <label for="Sweden"><input id="1" class="country-box" type="checkbox"> Sweden </label>
+            <label for="Spain"><input id="2" class="country-box" type="checkbox"> Spain </label>
+            <label for="Germany"><input id="3" class="country-box" type="checkbox"> Germany </label>
+            <label for="USA"><input id="4" class="country-box" type="checkbox"> USA </label>
+            <label for="UK"><input id="5" class="country-box" type="checkbox"> UK </label>
+            <label for="France"><input id="6" class="country-box" type="checkbox"> France </label>
+            <label for="Italy"><input id="7" class="country-box" type="checkbox"> Italy </label>
+            <label for="Japan"><input id="8" class="country-box" type="checkbox"> Japan </label>
           </div>
         </div>
     `;
@@ -65,7 +72,42 @@ function renderFilterButton(parent) {
   closeButton.addEventListener('click', function () {
     filterPopup.style.display = 'none';
   });
+
+  // Filter products based on price
+  const inputPrice = document.querySelector('.input-price');
+  const checkedCountries = document.querySelectorAll('.country-box');
+
+  inputPrice.addEventListener("input", filterProducts);
+
+  checkedCountries.forEach(function (checkbox) {
+    checkbox.addEventListener("change", filterProducts);
+  });
+
+  // Funktion som filtrerar skor baserat på priset man skrivit in,
+  // anropas när man skrivit in något i "MAX PRICE"
+  function filterProducts() {
+    const maxPrice = parseInt(inputPrice.value, 10) || 0;
+
+    const selectedCountryIds = Array.from(checkedCountries).filter(checkbox => checkbox.checked).map(checkbox => parseInt(checkbox.id, 10));
+
+    // Filter the products based on the entered price
+    const filteredProducts = SHOES.filter(product =>
+      product.price <= maxPrice &&
+      (selectedCountryIds.length === 0 || selectedCountryIds.includes(product.country_id))
+    );
+
+    console.log(filteredProducts);
+
+    // Render the filtered products
+    renderShoeList(structureContainers.bottom, filteredProducts);
+  }
 };
+
+
+
+
+
+
 
 // const sortBySelected = document.querySelector('#sort_by');
 // sortBySelected.addEventListener('change', function () {

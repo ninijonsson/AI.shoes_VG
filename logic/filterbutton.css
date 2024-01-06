@@ -134,7 +134,13 @@ input[type="checkbox"] {
     box-shadow: none;
     margin-right: 6px;
     position: relative;
-    top: 12px;
+    top: 2px;
+}
+
+label {
+    /* Inline så måste göra till block-element */
+    display: block;
+    padding-top: 12px;
 }
 
 input[type="checkbox"]:checked {
