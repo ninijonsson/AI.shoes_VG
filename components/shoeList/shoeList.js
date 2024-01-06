@@ -8,7 +8,6 @@ function renderShoeList(parent, shoes) {
     /* Feedback-klassen ifall vi inte får upp resultat på några skor
     <ol>-taggen för att skriva ut alla skor */
     container.innerHTML = `
-    <p class="feedback"></p>
     <ol></ol>
   `;
 
@@ -18,7 +17,9 @@ function renderShoeList(parent, shoes) {
 function updateShoeList(shoes) {
     const container = document.querySelector("#shoeList");
     const listDom = container.querySelector("ol");
-    const feedbackDom = container.querySelector(".feedback");
+    const feedbackDom = document.querySelector(".feedback");
+
+    console.log(shoes.length);
 
     listDom.innerHTML = "";
 
@@ -29,6 +30,9 @@ function updateShoeList(shoes) {
         feedbackDom.textContent = "Select filters to see shoes.";
     }
     else if (shoes.length === 0) {
+        feedbackDom.style.display = "block";
+        feedbackDom.style.marginLeft = "92px";
+        feedbackDom.style.marginTop = "-17px";
         feedbackDom.textContent = "No shoes found with your filters selected.";
     }
     else {

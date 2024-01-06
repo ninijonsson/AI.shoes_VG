@@ -5,7 +5,9 @@ function renderStructure() {
       <nav></nav>
       <main>
         <div id="top"></div>
-        <div id="bottom"></div>
+        <div id="bottom">
+          <p class="feedback"></p>
+        </div>
       </main>
     `;
 
