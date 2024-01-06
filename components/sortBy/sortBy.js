@@ -24,9 +24,19 @@ document.addEventListener('DOMContentLoaded', function () {
             case 'highestPrice':
                 sortedProducts = SHOES.slice().sort((a, b) => b.price - a.price);
                 break;
-            case "alphabeticalOrder":
-                sortedProducts = COUNTRIES.name.sort();
-                console.log(sortedProducts);
+            case 'alphabeticalOrder':
+                sortedProducts = SHOES.slice().sort((a, b) => {
+                    const countryA = COUNTRIES.find(country => country.id === a.country_id)?.name || '';
+                    const countryB = COUNTRIES.find(country => country.id === b.country_id)?.name || '';
+                    return countryA.localeCompare(countryB);
+                });
+                break;
+            case 'reverseOrder':
+                sortedProducts = SHOES.slice().sort((a, b) => {
+                    const countryA = COUNTRIES.find(country => country.id === a.country_id)?.name || '';
+                    const countryB = COUNTRIES.find(country => country.id === b.country_id)?.name || '';
+                    return countryB.localeCompare(countryA);
+                });
                 break;
             default:
                 // Default sorting (no sorting)
