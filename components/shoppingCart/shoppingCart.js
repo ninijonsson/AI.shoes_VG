@@ -30,7 +30,7 @@ function renderShoppingCartPopup(parent) {
             <p>CHECKOUT</p>
         </div>
     </div>
-    `
+    `;
 
     document.body.appendChild(shoppingPopup);
 
@@ -55,7 +55,7 @@ function renderShoesInCart(shoe, size) {
     <div class="shoe_image"><img src="./media/skobilder/${shoe.file_name}" alt="Shoes"></div>
     <div class="shoe_info">
         <div class="shoe_name">${shoe.name.toUpperCase()}</div>
-        <div class="shoe_size">${size}</div>
+        <div class="shoe_size">SIZE ${size}</div>
         <p class="shoe_price">${shoe.price} KR</p> 
         <img src="media/icons/trash_can.png" alt="Remove shoe" class="remove_shoe">
     </div>
@@ -65,10 +65,10 @@ function renderShoesInCart(shoe, size) {
     removeShoeButton.addEventListener("click", function () {
         addedShoe.remove();
         totalPrice -= shoe.price;
-        updateTotalPrice(); // Update the total price when a shoe is removed
+        updateTotalPrice(); // Uppdaterar priset när en sko har tagits bort
     });
 
-    updateTotalPrice(); // Update the total price when a new shoe is added
+    updateTotalPrice(); // Uppdaterar skopriset varje gång en sko har lagts till
 }
 
 // Funktion som uppdaterar totalpriset

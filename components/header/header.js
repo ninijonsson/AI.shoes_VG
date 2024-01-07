@@ -96,7 +96,7 @@ function f4(event) {
     let n = document.querySelector("nav");
     n.innerHTML = `
     <h1 class="shoe_rubrik">ALL</h1>
-    <p class="info_shoe">Check out all of our collection of shoes, whether it's boots, sneakers, or slippers.</p>
+    <p class="info_shoe">Explore our diverse collection of footwear, where style meets comfort. From trendy boots that make a bold fashion statement to sporty sneakers designed for an active lifestyle, and cozy slippers perfect for relaxing at home, our curated selection has something for every taste and occasion. Discover the latest trends and timeless classics in our shoe collection, crafted with precision and attention to detail. Step into a world of fashion-forward choices and elevate your shoe game with our carefully curated range. Quality, style, and comfort – find it all in our extensive shoe collection. Shop now and stride confidently with footwear that complements your unique personality and lifestyle.</p>
     `;
 
     let underline_selected = document.querySelector(".selected");

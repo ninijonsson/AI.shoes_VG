@@ -1,3 +1,8 @@
+// Vill ha clickedShoeArray som global variabel för att kunna inegrera med de andra
+// filtrerna
+let clickedShoeArray = SHOES;
+
+// types = KINDS från database.js
 function renderNavShoeKinds(parent, types) {
 
     // Skapar en div med texten "ALL"
@@ -13,7 +18,15 @@ function renderNavShoeKinds(parent, types) {
     parent.appendChild(textAll);
 
     // När man trycker på texten "ALL" anropas funktioner som uppdaterar sko listan
-    textAll.addEventListener("click", function (event) {
+    textAll.addEventListener("click", function () {
+        // Defaultvärden på filter och sortering
+        const options = document.querySelector("#sort_by");
+        options.value = "";
+        const checkbox = document.querySelectorAll(".country-box");
+        for (let i = 0; i < checkbox.length; i++) {
+            checkbox[i].checked = false;
+        }
+
         updateShoeList(SHOES);
     });;
 
@@ -30,10 +43,18 @@ function renderNavShoeKinds(parent, types) {
             parent.appendChild(text);
 
             text.addEventListener("click", function (event) {
-                let clickedShoeArray = array_filter(SHOES, function (obj) {
+                // Defaultvärden på filter och sortering
+                const options = document.querySelector("#sort_by");
+                options.value = "";
+                const checkbox = document.querySelectorAll(".country-box");
+                for (let i = 0; i < checkbox.length; i++) {
+                    checkbox[i].checked = false;
+                }
+
+                clickedShoeArray = array_filter(SHOES, function (obj) {
                     return obj.kind_id == event.target.id;
                 });
-                updateShoeList(clickedShoeArray);
+                renderShoeList(structureContainers.bottom, clickedShoeArray);
             });
         } else {
             const text = document.createElement("div");
@@ -47,13 +68,20 @@ function renderNavShoeKinds(parent, types) {
             parent.appendChild(text);
 
             text.addEventListener("click", function (event) {
+                // Defaultvärden på filter och sortering
+                const options = document.querySelector("#sort_by");
+                options.value = "";
+                const checkbox = document.querySelectorAll(".country-box");
+                for (let i = 0; i < checkbox.length; i++) {
+                    checkbox[i].checked = false;
+                }
                 // Skapar en ny array med skor som endast är den typen användaren klickar på
-                let clickedShoeArray = array_filter(SHOES, function (obj) {
+                clickedShoeArray = array_filter(SHOES, function (obj) {
                     // Event.target.id är id:et från den diven(typen) användaren tryckte på
                     return obj.kind_id == event.target.id;
                 });
                 // Anropar funktionen som uppdaterar listan
-                updateShoeList(clickedShoeArray);
+                renderShoeList(structureContainers.bottom, clickedShoeArray);
             });
         }
     }

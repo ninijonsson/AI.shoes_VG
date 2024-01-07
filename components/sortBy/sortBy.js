@@ -1,5 +1,8 @@
 "use strict";
 
+// Gör sorterade variabeln till en global variabel
+let sortedProducts;
+
 // Väntar tills DOM laddats in för att få koden att funka
 // Annars är sortSelect = null
 document.addEventListener("DOMContentLoaded", function () {
@@ -21,22 +24,45 @@ document.addEventListener("DOMContentLoaded", function () {
         // Kontrollera värdet
         console.log(sortSelect.value);
 
-        // Deklarerar en ny variabel som kommer att bli vår sorterade array
-        let sortedProducts;
+        // Selekterar klassen med MAX PRICE i filterbutton.js
+        const maxPrice = parseInt(document.querySelector(".input-price").value, 10) || 0;
+        // Array.from() skapar en ny array av, i detta fall nodelist av
+        // .country-box, vilket är våra checkboxes
+        // Den konverterar nodelist till array för att kunna använda
+        // metoderna .filter() och .map()
+        const selectedCountryIds = Array.from(document.querySelectorAll('.country-box'))
+            // Därefter .filter() som funkar som array_filter
+            // Inkluderar endast elementen som är inkryssade
+            .filter(checkbox => checkbox.checked)
+            // När vi filtrerat endast de ikryssade elementen
+            // konverterar vi dem till siffror med parseInt
+            .map(checkbox => parseInt(checkbox.id));
+
         switch (sortOption) {
             case "lowestPrice":
                 /* Använder oss av metoden ".sort()"
                 Om a - b är negativt, kommer a före eftersom a < b
                 Vi vill få lägsta priset först */
-                sortedProducts = SHOES.sort((a, b) => a.price - b.price);
+                // Utgår ifrån clickedArrayShoe som finns i navShoeKind.js
+                // som en global variabel och är en filtrerad array
+                sortedProducts = clickedShoeArray.filter(product =>
+                    product.price <= maxPrice &&
+                    (selectedCountryIds.length === 0 || selectedCountryIds.includes(product.country_id))
+                ).sort((a, b) => a.price - b.price);
                 break;
             case "highestPrice":
                 /* Och tvärtom här, blir b - a negativt kommer
                 b före eftersom b < a */
-                sortedProducts = SHOES.sort((a, b) => b.price - a.price);
+                sortedProducts = clickedShoeArray.filter(product =>
+                    product.price <= maxPrice &&
+                    (selectedCountryIds.length === 0 || selectedCountryIds.includes(product.country_id))
+                ).sort((a, b) => b.price - a.price);
                 break;
             case "alphabeticalOrder":
-                sortedProducts = SHOES.sort((a, b) => {
+                sortedProducts = clickedShoeArray.filter(product =>
+                    product.price <= maxPrice &&
+                    (selectedCountryIds.length === 0 || selectedCountryIds.includes(product.country_id))
+                ).sort((a, b) => {
                     // Funkar som array_find() men är en inbyggd metod
                     // country är COUNTRIES och a.country_id är SHOES
                     // .name i slutet för att få namnet på produktionsland
@@ -52,7 +78,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
                 break;
             case "reverseOrder":
-                sortedProducts = SHOES.sort((a, b) => {
+                sortedProducts = clickedShoeArray.filter(product =>
+                    product.price <= maxPrice &&
+                    (selectedCountryIds.length === 0 || selectedCountryIds.includes(product.country_id))
+                ).sort((a, b) => {
                     const countryA = COUNTRIES.find(country => country.id === a.country_id).name;
                     const countryB = COUNTRIES.find(country => country.id === b.country_id).name;
                     return countryB.localeCompare(countryA);

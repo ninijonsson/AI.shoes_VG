@@ -31,13 +31,13 @@ function renderFilterButton(parent) {
   buttonContainer.classList.add('filter-container');
   buttonContainer.appendChild(filterButton);
 
-  const container = document.querySelector('#top');
+  const container = document.querySelector("#top");
   if (container) {
     container.parentNode.insertBefore(buttonContainer, container.nextSibling);
   }
 
-  const filterPopup = document.createElement('div');
-  filterPopup.classList.add('filter-popup');
+  const filterPopup = document.createElement("div");
+  filterPopup.classList.add("filter-popup");
 
   filterPopup.innerHTML = `
       <div class="filter-content">
@@ -64,19 +64,19 @@ function renderFilterButton(parent) {
 
   document.body.appendChild(filterPopup);
 
-  filterButton.addEventListener('click', function () {
-    filterPopup.style.display = 'block';
+  filterButton.addEventListener("click", function () {
+    filterPopup.style.display = "block";
   });
 
   const closeButton = filterPopup.querySelector('.close-button');
 
-  closeButton.addEventListener('click', function () {
-    filterPopup.style.display = 'none';
+  closeButton.addEventListener("click", function () {
+    filterPopup.style.display = "none";
   });
 
   // Filter products based on price
-  const inputPrice = document.querySelector('.input-price');
-  const checkedCountries = document.querySelectorAll('.country-box');
+  const inputPrice = document.querySelector(".input-price");
+  const checkedCountries = document.querySelectorAll(".country-box");
 
   inputPrice.addEventListener("input", filterProducts);
 
@@ -87,15 +87,60 @@ function renderFilterButton(parent) {
   // Funktion som filtrerar skor baserat på priset man skrivit in,
   // anropas när man skrivit in något i "MAX PRICE"
   function filterProducts() {
+    console.log();
     const maxPrice = parseInt(inputPrice.value, 10) || 0;
 
     const selectedCountryIds = Array.from(checkedCountries).filter(checkbox => checkbox.checked).map(checkbox => parseInt(checkbox.id, 10));
 
+    const sortSelect = document.getElementById("sort_by");
+    const sortOption = sortSelect.value;
+    if (sortOption === "lowestPrice") {
+      clickedShoeArray.sort((a, b) => a.price - b.price);
+    } else if (sortOption === "highestPrice") {
+      clickedShoeArray.sort((a, b) => b.price - a.price);
+    } else if (sortOption === "alphabeticalOrder") {
+      clickedShoeArray.sort((a, b) => {
+        // Funkar som array_find() men är en inbyggd metod
+        // country är COUNTRIES och a.country_id är SHOES
+        // .name i slutet för att få namnet på produktionsland
+        const countryA = COUNTRIES.find(country => country.id === a.country_id).name;
+        const countryB = COUNTRIES.find(country => country.id === b.country_id).name;
+        /* A negative number if referenceStr (= countryA) occurs before
+        compareString (= countryB); positive if the referenceStr occurs
+        after compareString; 0 if they are equivalent. */
+        return countryA.localeCompare(countryB);
+      })
+    } else if (sortOption === "reverseOrder") {
+      clickedShoeArray.sort((a, b) => {
+        // Funkar som array_find() men är en inbyggd metod
+        // country är COUNTRIES och a.country_id är SHOES
+        // .name i slutet för att få namnet på produktionsland
+        const countryA = COUNTRIES.find(country => country.id === a.country_id).name;
+        const countryB = COUNTRIES.find(country => country.id === b.country_id).name;
+        /* A negative number if referenceStr (= countryA) occurs before
+        compareString (= countryB); positive if the referenceStr occurs
+        after compareString; 0 if they are equivalent. */
+        return countryB.localeCompare(countryA);
+      })
+    }
+
     // Filter the products based on the entered price
-    const filteredProducts = SHOES.filter(product =>
-      product.price <= maxPrice &&
-      (selectedCountryIds.length === 0 || selectedCountryIds.includes(product.country_id))
-    );
+    let filteredProducts;
+    // Check if clickedShoeArray is defined and not empty
+    if (clickedShoeArray.length > 0) {
+      // Use clickedShoeArray as the source of products if available
+      filteredProducts = clickedShoeArray.filter(product =>
+        product.price <= maxPrice &&
+        (selectedCountryIds.length === 0 || selectedCountryIds.includes(product.country_id))
+      );
+    }
+    else {
+      // Otherwise, use the original SHOES array for filtering
+      filteredProducts = SHOES.filter(product =>
+        product.price <= maxPrice &&
+        (selectedCountryIds.length === 0 || selectedCountryIds.includes(product.country_id))
+      );
+    }
 
     console.log(filteredProducts);
 
@@ -103,38 +148,3 @@ function renderFilterButton(parent) {
     renderShoeList(structureContainers.bottom, filteredProducts);
   }
 };
-
-
-
-
-
-
-
-// const sortBySelected = document.querySelector('#sort_by');
-// sortBySelected.addEventListener('change', function () {
-//   sortBy();
-// });
-
-// function sortBy(options) {
-//   var selectElement = document.getElementById("sort_by");
-//   var selectedValue = selectElement.value;
-
-//   // Remove existing shoe list items
-//   var shoesList = document.getElementById("shoesList");
-//   while (shoesList.firstChild) {
-//     shoesList.removeChild(shoesList.firstChild);
-//   }
-
-//   // Add sorted shoes to the list
-//   shoes.forEach(function (shoe) {
-//     var listItem = document.createElement("li");
-//     listItem.textContent = shoe.name + ' - $' + shoe.price;
-//     shoesList.appendChild(listItem);
-//   });
-// }
-
-// // Initial sorting
-// sortShoes();
-
-// // Add an event listener to the select element
-// document.getElementById("sort_by").addEventListener("change", sortShoes);
