@@ -61,7 +61,7 @@ function renderShoesInCart(shoe, size) {
     </div>
     `;
 
-    let removeShoeButton = document.querySelector(".remove_shoe");
+    let removeShoeButton = addedShoe.querySelector(".remove_shoe");
     removeShoeButton.addEventListener("click", function () {
         addedShoe.remove();
         totalPrice -= shoe.price;
