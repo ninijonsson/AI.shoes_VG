@@ -14,42 +14,6 @@ function render_header(parent) {
     aboutUs.classList.add("about");
     parent.appendChild(aboutUs);
 
-    const shoppingCart = document.createElement("img");
-    shoppingCart.classList.add("shopping_cart");
-    shoppingCart.src = "media/icons/shopping_bag.png";
-    parent.appendChild(shoppingCart);
-
-    const shoppingPopup = document.createElement("div");
-    shoppingPopup.classList.add("shopping_popup");
-
-    shoppingPopup.innerHTML = `
-    <div class="shopping_content">
-        <span class="close_button">x</span>
-        <h1>YOUR CART</h1>
-        <div class="shoes_in_cart"></div>
-
-        <div class="total_box">
-            <h3 class="total_price_text">Total</h3>
-            <p class="total_price">300 kr</p>
-        </div>
-
-        <div class="checkout">
-            <p>CHECKOUT</p>
-        </div>
-    </div>
-    `
-
-    document.body.appendChild(shoppingPopup);
-
-    shoppingCart.addEventListener("click", function () {
-        shoppingPopup.style.display = "block";
-    })
-
-    const closeButton = shoppingPopup.querySelector(".close_button");
-    closeButton.addEventListener("click", function () {
-        shoppingPopup.style.display = "none";
-    })
-
     // parent.innerHTML = `
     //     <div class="h_class rubrik">AI.shoes</div>
     //     <div class="h_class all">ALL</div>
@@ -173,8 +137,4 @@ function f6() {
     let n = document.querySelector(".about_popup");
     n.remove();
 }
-
-function viewCart() {
-
-};
 
