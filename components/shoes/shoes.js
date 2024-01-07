@@ -81,6 +81,37 @@ function renderShoes(parent, shoe) {
 
     document.body.appendChild(popup);
 
+    // Event listener till "Add to cart"-knappen
+    // const addToCartButton = popup.querySelector('#addToCartButton');
+    // addToCartButton.addEventListener('click', function () {
+    //   const selectedSize = getSelectedSize(); // Implement this function to get the selected size
+    //   const isInStock = checkStockAvailability(selectedSize);
+
+    //   if (isInStock) {
+    //     addToCart(shoe);
+    //     popup.remove(); // Optionally, close the popup after adding to the cart
+    //   } else {
+    //     alert('Selected size is not in stock. Please choose another size.');
+    //   }
+    // });
+
+    // // Function to get the selected size from the rendered sizes
+    // function getSelectedSize() {
+    //   const sizeContainer = document.getElementById('sizeContainer');
+    //   const selectedSizeElement = sizeContainer.querySelector('.selected');
+
+    //   return selectedSizeElement ? selectedSizeElement.textContent : null;
+    // }
+
+    // // Function to check if the selected size is in stock
+    // function checkStockAvailability(selectedSize) {
+    //   // Implement your logic to check if the selected size is in stock
+    //   // For example, you might have an array of available sizes for the shoe
+    //   const availableSizes = foundSize.map(size => size.size);
+
+    //   return availableSizes.includes(selectedSize);
+    // }
+
     const closeButton = popup.querySelector('#closeButton');
     closeButton.addEventListener('click', function () {
       popup.remove();
