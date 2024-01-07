@@ -150,7 +150,9 @@ header .selected {
 
 .close_button {
     cursor: pointer;
-    font-size: 32px;
+    font-size: 37px;
+    display: flex;
+    justify-content: end;
 }
 
 .shopping_container {
@@ -174,16 +176,16 @@ header .selected {
     top: 0;
     bottom: 0;
 
-    overflow: hidden;
+    overflow-y: scroll;
     background-color: rgba(0, 0, 0, 0.4);
 }
 
 .shopping_content {
     background-color: #fefefe;
     margin: 0;
-    padding: 3vw 2vw;
-    width: 25%;
-    height: 100%;
+    padding: 1vw 2vw 3vw 3vw;
+    width: 40%;
+    height: fit-content;
     position: absolute;
     right: 0;
 }

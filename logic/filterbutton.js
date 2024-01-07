@@ -20,6 +20,7 @@ function renderFilterButton(parent) {
   sortBy.innerHTML = `
   <p><b>SORT BY: </b></p>
   <select id="sort_by">
+      <option value="">PLEASE CHOOSE SORTING</option>
       <option value="lowestPrice">PRICE: LOW TO HIGH PRICE</option>
       <option value="highestPrice">PRICE: HIGH TO LOW PRICE</option>
       <option value="alphabeticalOrder">COUNTRY OF PRODUCTION: A TO Z</option>

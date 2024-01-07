@@ -13,3 +13,46 @@
     color: black;
     cursor: pointer;
 }
+
+#remove_shoe {
+    cursor: pointer;
+    grid-row: 1;
+    grid-column: 2;
+    justify-self: end;
+
+    width: 20px;
+    border: none;
+    padding-top: 2px;
+    padding-right: 7px;
+}
+
+#shoe_image>img {
+    width: 125px;
+}
+
+#shoe_name {
+    font-size: 20px;
+}
+
+#shoe_size {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 18px;
+}
+
+#shoe_price {
+    grid-row: 3;
+}
+
+#shoe_info {
+    display: grid;
+    grid-template-columns: 182px 74px;
+    grid-template-rows: 31px 59px 65px;
+    padding-left: 14px;
+}
+
+#shoe_in_cart {
+    display: flex;
+    margin-bottom: 25px;
+    border-bottom: 1px solid gray;
+}

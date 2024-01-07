@@ -32,6 +32,8 @@ function renderShoes(parent, shoe) {
 
     //Reviews
     const foundReview = REVIEWS.filter((obj) => obj.shoe_id === shoe.id);
+    // Skostorlekar
+    // Metoden .filter() funkar som array_filter()
     const foundSize = INVENTORY.filter((obj) => obj.shoe_id === shoe.id);
 
     // declare to calculate the average of the reviews
@@ -58,7 +60,7 @@ function renderShoes(parent, shoe) {
                 <h2>SIZES</h2>
               </div>
               <div class="sizes">${renderSize(foundSize)}</div>
-              <div class="addtocart">
+              <div class="addToCartButton">
                 <p>ADD TO CART</p>
               </div>
             </div>           
@@ -81,39 +83,102 @@ function renderShoes(parent, shoe) {
 
     document.body.appendChild(popup);
 
-    // Event listener till "Add to cart"-knappen
-    // const addToCartButton = popup.querySelector('#addToCartButton');
-    // addToCartButton.addEventListener('click', function () {
-    //   const selectedSize = getSelectedSize(); // Implement this function to get the selected size
-    //   const isInStock = checkStockAvailability(selectedSize);
+    /* Renderar storlekarna och kontrollerar dess saldo
+Tar emot en parameter, inventory, som är skon */
+    function renderSize(inventory) {
+      // .map() skapar en ny array, alltså modifierar inte den originella arrayen,
+      // genom att kalla på en funktion på varje element i arrayen
+      // sizesHTML är alltså en array
+      const sizesHTML = inventory.map((inventoryItem) => {
+        // n_shoes finns i INVENTORY i "database.js"
+        const isAvailable = inventoryItem.n_shoes > 0; // Kontrollerar om skon finns i saldo
 
-    //   if (isInStock) {
-    //     addToCart(shoe);
-    //     popup.remove(); // Optionally, close the popup after adding to the cart
-    //   } else {
-    //     alert('Selected size is not in stock. Please choose another size.');
-    //   }
-    // });
+        let sizeClass; // Deklarerar en klass som ska kontrollera om skon finns i saldo
+        if (isAvailable) {
+          sizeClass = ""; // Skon finns i saldo, så klassen blir tom
+        } else {
+          sizeClass = "unavailable-size"; // Finns inte skon får den en klass
+        }
 
-    // // Function to get the selected size from the rendered sizes
-    // function getSelectedSize() {
-    //   const sizeContainer = document.getElementById('sizeContainer');
-    //   const selectedSizeElement = sizeContainer.querySelector('.selected');
+        let sizeContent; // Deklarerar som kontrollerar hur skon ska synas på hemsidan, om den finns eller inte
+        if (isAvailable) {
+          sizeContent = inventoryItem.size; // Ska renderas som vanligt om den finns
+        } else {
+          // Om den inte finns i saldo, ska vi styla boxen annorlunda för att indikera
+          // att den inte finns
+          sizeContent = `<div class="unavailable-x"></div>${inventoryItem.size}`;
+        }
 
-    //   return selectedSizeElement ? selectedSizeElement.textContent : null;
-    // }
+        return `
+        <div class="size-box ${sizeClass}">
+          <p class="choose">${sizeContent}</p>
+        </div>
+      `;
+      }).join("");
+      // .join("") tar bort kommateckena eftersom sizesHTML är en array som vi beskrev
+      // Konverterar vi arrayen till en sträng kommer kommateckena att komma med
+      // konverteringen
+      // T.ex. const fruits = ["Banana", "Orange", "Apple", "Mango"];
+      //       let text = fruits.join(" and ");
+      // =>    Banana and Orange and Apple and Mango
+      // Istället för Banana, Orange, Apple, Mango
 
-    // // Function to check if the selected size is in stock
-    // function checkStockAvailability(selectedSize) {
-    //   // Implement your logic to check if the selected size is in stock
-    //   // For example, you might have an array of available sizes for the shoe
-    //   const availableSizes = foundSize.map(size => size.size);
+      return sizesHTML;
+    }
 
-    //   return availableSizes.includes(selectedSize);
-    // }
+    // Selekterar "add to cart"-button för att kunna lägga till
+    // en event listener
+    const addToCartButton = popup.querySelector(".addToCartButton");
 
-    const closeButton = popup.querySelector('#closeButton');
-    closeButton.addEventListener('click', function () {
+    addToCartButton.addEventListener("click", function () {
+      // Funktion anropas som hanterar val av skor
+      const selectedSize = getSelectedSize();
+      let selectedShoe = arrayFind(SHOES, function (object) {
+        return shoe.id == object.id;
+      })
+
+      console.log(selectedShoe);
+      // Funktion anropas som kontrollerar om skon finns i saldo
+      // Returnerar true eller false
+      const isInStock = checkStockAvailability(selectedShoe, selectedSize);
+
+      if (isInStock) {
+        addToCart(selectedShoe, selectedSize);
+        alert("Your shoe was successfully added to the cart!");
+      } else {
+        // alert() ger oss ett meddelande
+        alert("Selected size is not in stock. Please choose another size.");
+      }
+    });
+
+    // Funktionen hanterar val av storlek
+    // Anropas i addToCartButton, selectedSize
+    function getSelectedSize() {
+      // const sizeContainer = document.querySelector(".size-box");
+      const selectedSizeElement = document.querySelector(".selected_shoe");
+
+      // if selectedSizeElement är true, returnera textContent
+      // annars returnera null
+      // .trim() för att ta bort all space
+      return selectedSizeElement ? selectedSizeElement.textContent.trim() : null;
+    }
+
+    // Funktion som kontrollerar om skon finns i saldo
+    // Anropas i addToCartButton, isInStock
+    function checkStockAvailability(selectedShoe, selectedSize) {
+      // Implement your logic to check if the selected size is in stock
+      // For example, you might have an array of available sizes for the shoe
+      const availableSizes = INVENTORY
+        .filter(sizeObject => sizeObject.shoe_id === selectedShoe.id && sizeObject.n_shoes > 0)
+        .map(sizeObject => sizeObject.size);
+      console.log(availableSizes);
+      // True eller false
+      return availableSizes.includes(Number(selectedSize));
+    }
+
+    // X-knappen, tar bort popup-fönstret
+    const closeButton = popup.querySelector("#closeButton");
+    closeButton.addEventListener("click", function () {
       popup.remove();
     });
 
@@ -132,23 +197,6 @@ function renderShoes(parent, shoe) {
     });
 
   })
-
-  /*sizes*/
-  //show up the list of the shoes sizes
-  function renderSize(inventory) {
-    const sizesHTML = inventory.map((inventoryItem) => {
-      const isAvailable = inventoryItem.n_shoes > 0;
-      const sizeClass = isAvailable ? '' : 'unavailable-size';
-      const sizeContent = isAvailable ? inventoryItem.size : `<div class="unavailable-x"></div>${inventoryItem.size}`;
-      return `
-        <div class="size-box ${sizeClass}">
-          <p class="choose">${sizeContent}</p>
-        </div>
-      `;
-    }).join('');
-
-    return sizesHTML;
-  }
 
   //show the comment on the shoes
   function renderComments(reviews) {
@@ -181,11 +229,5 @@ function renderShoes(parent, shoe) {
       return `<span class="star ${starStyle}">&#9733;</span>`;
     }).join("");
   }
-
-  // Event listener till "add to cart"-knapp
-  // const cartContainer = document.querySelector(".addtocart");
-  // cartContainer.addEventListener("click", function (shoe) {
-  //   inCart.push(shoe);
-  // });
 }
 
