@@ -54,6 +54,7 @@ button>img {
     height: 100%;
     position: absolute;
     right: 0;
+    overflow-y: scroll;
 }
 
 .filter-content h1 {

@@ -22,12 +22,18 @@ function renderNavShoeKinds(parent, types) {
         // Defaultvärden på filter och sortering
         const options = document.querySelector("#sort_by");
         options.value = "";
+
         const price = document.querySelector(".input-price");
         price.value = 2000;
-        options.value = "";
-        const checkbox = document.querySelectorAll(".country-box");
-        for (let i = 0; i < checkbox.length; i++) {
-            checkbox[i].checked = false;
+
+        const kind = document.querySelectorAll("kind-box");
+        for (let i = 0; i < kind.length; i++) {
+            kind[i].checked = false;
+        }
+
+        const country = document.querySelectorAll(".country-box");
+        for (let i = 0; i < country.length; i++) {
+            country[i].checked = false;
         }
 
         // Default
@@ -50,11 +56,18 @@ function renderNavShoeKinds(parent, types) {
                 // Defaultvärden på filter och sortering
                 const options = document.querySelector("#sort_by");
                 options.value = "";
+
                 const price = document.querySelector(".input-price");
                 price.value = 2000;
-                const checkbox = document.querySelectorAll(".country-box");
-                for (let i = 0; i < checkbox.length; i++) {
-                    checkbox[i].checked = false;
+
+                const kind = document.querySelectorAll("kind-box");
+                for (let i = 0; i < kind.length; i++) {
+                    kind[i].checked = false;
+                }
+
+                const country = document.querySelectorAll(".country-box");
+                for (let i = 0; i < country.length; i++) {
+                    country[i].checked = false;
                 }
 
                 clickedShoeArray = array_filter(SHOES, function (obj) {
@@ -77,11 +90,18 @@ function renderNavShoeKinds(parent, types) {
                 // Defaultvärden på filter och sortering
                 const options = document.querySelector("#sort_by");
                 options.value = "";
+
                 const price = document.querySelector(".input-price");
                 price.value = 2000;
-                const checkbox = document.querySelectorAll(".country-box");
-                for (let i = 0; i < checkbox.length; i++) {
-                    checkbox[i].checked = false;
+
+                const kind = document.querySelectorAll("kind-box");
+                for (let i = 0; i < kind.length; i++) {
+                    kind[i].checked = false;
+                }
+
+                const country = document.querySelectorAll(".country-box");
+                for (let i = 0; i < country.length; i++) {
+                    country[i].checked = false;
                 }
                 // Skapar en ny array med skor som endast är den typen användaren klickar på
                 clickedShoeArray = array_filter(SHOES, function (obj) {

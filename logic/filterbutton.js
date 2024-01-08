@@ -52,6 +52,12 @@ function renderFilterButton(parent) {
         <span class="close-button">x</span>
         <h1>FILTER</h1>
         <div class="filter-content-types">
+        <div>
+          <h3> Types of Shoes</h3>
+          <label for="Boots"><input type="checkbox" id="2" class="kind-box">BOOTS</label>
+          <label for="Sneakers"><input type="checkbox" id="3" class="kind-box">SNEAKERS</label>
+          <label for="Slippers"><input type="checkbox" id="1" class="kind-box">SLIPPERS</label>
+        </div>
           <div>
             <h3>MAX PRICE</h3>
             <p> Up to: <input type="text" class="input-price" value="2000"> KR </p>
@@ -86,12 +92,18 @@ function renderFilterButton(parent) {
   const inputPrice = document.querySelector(".input-price");
   // Selekterar alla checkboxar i "MADE IN"
   const checkedCountries = document.querySelectorAll(".country-box");
+  // Selekterar alla checkboxar i "TYPES OF SHOES"
+  const checkedKinds = document.querySelectorAll(".kind-box");
 
   // Anropas varje gång vi skriver in något i "MAX PRICE"
   inputPrice.addEventListener("input", filterProducts);
 
   // För varje ikryssat land triggas en event listener igång
   checkedCountries.forEach(function (checkbox) {
+    checkbox.addEventListener("change", filterProducts);
+  });
+
+  checkedKinds.forEach(function (checkbox) {
     checkbox.addEventListener("change", filterProducts);
   });
 
@@ -103,7 +115,9 @@ function renderFilterButton(parent) {
 
     // Gör om checkedCountries till en array från nodelist för att kunna använda
     // .filter() och .map()
-    const selectedCountryIds = Array.from(checkedCountries).filter(checkbox => checkbox.checked).map(checkbox => parseInt(checkbox.id, 10));
+    const selectedCountryIds = Array.from(checkedCountries).filter(checkbox => checkbox.checked).map(checkbox => parseInt(checkbox.id));
+
+    const selectedShoeKinds = Array.from(checkedKinds).filter(checkbox => checkbox.checked).map(checkbox => parseInt(checkbox.id));
 
     // Sorteringskoden här för att inte överskridas av filtrering
     const sortSelect = document.getElementById("sort_by");
@@ -147,7 +161,9 @@ function renderFilterButton(parent) {
         // Filtrera om maxPrice är mer eller lika med product.price
         product.price <= maxPrice &&
         // OCH selectedCountryIds (rad 106) har country_id från product
-        (selectedCountryIds.length === 0 || selectedCountryIds.includes(product.country_id))
+        (selectedCountryIds.length === 0 || selectedCountryIds.includes(product.country_id)) &&
+        // OCH selectedShoeKinds har kind_id för product
+        (selectedShoeKinds.length === 0 || selectedShoeKinds.includes(product.kind_id))
       );
     }
     else {
@@ -155,6 +171,7 @@ function renderFilterButton(parent) {
       filteredShoes = SHOES.filter(product =>
         product.price <= maxPrice &&
         (selectedCountryIds.length === 0 || selectedCountryIds.includes(product.country_id))
+        && (selectedShoeKinds.length === 0 || selectedShoeKinds.includes(product.kind_id))
       );
     }
 
