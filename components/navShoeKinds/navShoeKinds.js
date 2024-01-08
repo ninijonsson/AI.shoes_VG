@@ -26,7 +26,7 @@ function renderNavShoeKinds(parent, types) {
         const price = document.querySelector(".input-price");
         price.value = 2000;
 
-        const kind = document.querySelectorAll("kind-box");
+        const kind = document.querySelectorAll(".kind-box");
         for (let i = 0; i < kind.length; i++) {
             kind[i].checked = false;
         }
@@ -60,7 +60,7 @@ function renderNavShoeKinds(parent, types) {
                 const price = document.querySelector(".input-price");
                 price.value = 2000;
 
-                const kind = document.querySelectorAll("kind-box");
+                const kind = document.querySelectorAll(".kind-box");
                 for (let i = 0; i < kind.length; i++) {
                     kind[i].checked = false;
                 }
@@ -94,7 +94,7 @@ function renderNavShoeKinds(parent, types) {
                 const price = document.querySelector(".input-price");
                 price.value = 2000;
 
-                const kind = document.querySelectorAll("kind-box");
+                const kind = document.querySelectorAll(".kind-box");
                 for (let i = 0; i < kind.length; i++) {
                     kind[i].checked = false;
                 }
