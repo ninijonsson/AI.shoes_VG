@@ -112,7 +112,7 @@ function f5(event) {
     <div class="about_popup">
         <div class="about_popup_container">
             <div class="about_popup_closebutton">X</div>
-            <img src="media/images_aboutus/niagara.jpg" alt="Malmö Universitet" class="about_popup_image">
+            <img src="media/images_aboutus/IMG_3703.jpeg" alt="Malmö Universitet" class="about_popup_image">
             <div class="about_textcontent">
                 <h1 class="popup_h1">Malmö Universitet</h1>
                 <h3 class="popup_h3">Medieteknik: Webbaserad design & utveckling</h3>
