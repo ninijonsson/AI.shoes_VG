@@ -2,11 +2,10 @@
 
 function renderShoeList(parent, shoes) {
     const container = document.createElement("div");
-    container.id = "shoeList";
+    container.id = "shoe_list";
     parent.append(container);
 
-    /* Feedback-klassen ifall vi inte får upp resultat på några skor
-    <ol>-taggen för att skriva ut alla skor */
+    // Listan på skorna ska renderas inom containern <ol>
     container.innerHTML = `
     <ol></ol>
   `;
@@ -15,18 +14,18 @@ function renderShoeList(parent, shoes) {
 }
 
 function updateShoeList(shoes) {
-    const container = document.querySelector("#shoeList");
+    const container = document.querySelector("#shoe_list");
     const listDom = container.querySelector("ol");
     const feedbackDom = document.querySelector(".feedback");
 
-    console.log(shoes.length);
-
+    // Default
     listDom.innerHTML = "";
 
     /* Filtrerar skorna, ska finnas i logic > filter.js */
-    // const shoes = filterShoes();
-
     if (shoes === undefined) {
+        feedbackDom.style.display = "block";
+        feedbackDom.style.marginLeft = "92px";
+        feedbackDom.style.marginTop = "-17px";
         feedbackDom.textContent = "Select filters to see shoes.";
     }
     else if (shoes.length === 0) {
@@ -39,6 +38,7 @@ function updateShoeList(shoes) {
         // Finns resultat vill vi inte att feedback ska synas
         feedbackDom.style.display = "none";
         for (let shoe of shoes) {
+            // shoes.js
             renderShoes(listDom, shoe);
         }
     }

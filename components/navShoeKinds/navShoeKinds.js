@@ -22,11 +22,15 @@ function renderNavShoeKinds(parent, types) {
         // Defaultvärden på filter och sortering
         const options = document.querySelector("#sort_by");
         options.value = "";
+        const price = document.querySelector(".input-price");
+        price.value = 2000;
+        options.value = "";
         const checkbox = document.querySelectorAll(".country-box");
         for (let i = 0; i < checkbox.length; i++) {
             checkbox[i].checked = false;
         }
 
+        // Default
         updateShoeList(SHOES);
     });;
 
@@ -46,6 +50,8 @@ function renderNavShoeKinds(parent, types) {
                 // Defaultvärden på filter och sortering
                 const options = document.querySelector("#sort_by");
                 options.value = "";
+                const price = document.querySelector(".input-price");
+                price.value = 2000;
                 const checkbox = document.querySelectorAll(".country-box");
                 for (let i = 0; i < checkbox.length; i++) {
                     checkbox[i].checked = false;
@@ -71,6 +77,8 @@ function renderNavShoeKinds(parent, types) {
                 // Defaultvärden på filter och sortering
                 const options = document.querySelector("#sort_by");
                 options.value = "";
+                const price = document.querySelector(".input-price");
+                price.value = 2000;
                 const checkbox = document.querySelectorAll(".country-box");
                 for (let i = 0; i < checkbox.length; i++) {
                     checkbox[i].checked = false;

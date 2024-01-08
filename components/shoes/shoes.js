@@ -6,6 +6,7 @@ function renderShoes(parent, shoe) {
   container.id = shoe.id;
   parent.append(container);
 
+  // Hittar skons id stämmer med parametern shoe.id
   const countryOfProduction = arrayFind(COUNTRIES, function (x) { return x.id === shoe.country_id; });
   const kindOfShoe = arrayFind(KINDS, function (x) { return x.id === shoe.kind_id; });
 
@@ -22,25 +23,35 @@ function renderShoes(parent, shoe) {
     `;
 
   container.addEventListener("click", function () {
+    // Funktion som räknar ut genomsnittligt betyg
     function calculateAverageRating(reviews) {
+      // .reduce()-metoden gör om en array till ett värde
+      // Tar emot två parametrar; en funktion, och ett startvärde
       const totalScores = reviews.reduce((sum, review) => sum + review.score, 0);
+      // Räknar ut genomsnittliga betyget
+      // Totala betyget delat på antal betyg
+      // "|| 1" för om reviews.length = 0 blir det undefined,
+      // går inte att dela på 0
       const averageRating = totalScores / (reviews.length || 1);
+
+      // Om averageRating är Not A Number returneras 0
+      // Annars returneras genomsnittliga betyget
       return isNaN(averageRating) ? 0 : averageRating;
     }
 
     const imagePath = shoe.file_name;
 
-    //Reviews
+    // Filtrerar efter rätt recensioner till skon
     const foundReview = REVIEWS.filter((obj) => obj.shoe_id === shoe.id);
     // Skostorlekar
     // Metoden .filter() funkar som array_filter()
     const foundSize = INVENTORY.filter((obj) => obj.shoe_id === shoe.id);
 
-    // declare to calculate the average of the reviews
+    // Genomsnittliga betyget
     const averageRating = calculateAverageRating(foundReview);
 
-    // console.log(KINDS);
-    // console.log(kindOfShoe);
+    const countryOfProduction = COUNTRIES.find(function (x) { return x.id === shoe.country_id; });
+    const kindOfShoe = KINDS.find(function (x) { return x.id === shoe.kind_id; });
 
     const popup = document.createElement("div");
     popup.innerHTML = `
@@ -82,6 +93,12 @@ function renderShoes(parent, shoe) {
     `;
 
     document.body.appendChild(popup);
+
+    // X-knappen, tar bort popup-fönstret
+    const closeButton = popup.querySelector("#closeButton");
+    closeButton.addEventListener("click", function () {
+      popup.remove();
+    });
 
     /* Renderar storlekarna och kontrollerar dess saldo
 Tar emot en parameter, inventory, som är skon */
@@ -143,7 +160,7 @@ Tar emot en parameter, inventory, som är skon */
       const isInStock = checkStockAvailability(selectedShoe, selectedSize);
 
       if (isInStock) {
-        addToCart(selectedShoe, selectedSize);
+        renderShoesInCart(selectedShoe, selectedSize); // Finns i shoppingCart.js
         alert("Your shoe was successfully added to the cart!");
       } else {
         // alert() ger oss ett meddelande
@@ -152,7 +169,7 @@ Tar emot en parameter, inventory, som är skon */
     });
 
     // Funktionen hanterar val av storlek
-    // Anropas i addToCartButton, selectedSize
+    // Anropas i addToCartButton event listener, selectedSize
     function getSelectedSize() {
       // const sizeContainer = document.querySelector(".size-box");
       const selectedSizeElement = document.querySelector(".selected_shoe");
@@ -169,20 +186,14 @@ Tar emot en parameter, inventory, som är skon */
       // Implement your logic to check if the selected size is in stock
       // For example, you might have an array of available sizes for the shoe
       const availableSizes = INVENTORY
-        .filter(sizeObject => sizeObject.shoe_id === selectedShoe.id && sizeObject.n_shoes > 0)
+        .filter(sizeObject => (sizeObject.shoe_id === selectedShoe.id) && sizeObject.n_shoes > 0)
         .map(sizeObject => sizeObject.size);
       console.log(availableSizes);
       // True eller false
       return availableSizes.includes(Number(selectedSize));
     }
 
-    // X-knappen, tar bort popup-fönstret
-    const closeButton = popup.querySelector("#closeButton");
-    closeButton.addEventListener("click", function () {
-      popup.remove();
-    });
-
-    //choose the size and change the background color
+    // Ändrar styling om man klickat på skon
     const sizeBoxes = document.querySelectorAll(".size-box");
 
     sizeBoxes.forEach(function (sizeBox) {
@@ -198,7 +209,7 @@ Tar emot en parameter, inventory, som är skon */
 
   })
 
-  //show the comment on the shoes
+  // Visar kommentarerna på skorna
   function renderComments(reviews) {
     return reviews.map((review) => `
     <div class="comment">
@@ -215,19 +226,27 @@ Tar emot en parameter, inventory, som är skon */
         <p>${review.rev}</p>
       </div>
     </div>
-  `).join("");
+  `).join(""); // Ta bort kommatecken när array blir till sträng
   }
 
 
   function renderStarRatings(score) {
-    const totalStars = 5;
-    const filledStars = Math.round(score);
+    const totalStars = 5; // max = 5
+    const filledStars = Math.round(score); // Math.round avrundar till närmsta heltal
 
+    // Array.from() skapar en array av strängar eller siffror
+    // Syntax: Array.from(object, mapFunction, thisValue)
+
+    // (_, index) är funktion som mappar alla element i arrayen
+    // Syntax: array.map(function(currentValue, index, arr), thisValue)
+
+    // length: 5 på arrayen
     return Array.from({ length: totalStars }, (_, index) => {
-      const isFilled = index < filledStars;
-      const starStyle = isFilled ? 'filled-star' : 'empty-star';
+      const isFilled = index < filledStars; // true eller false
+      const starStyle = isFilled ? "filled-star" : "empty-star";
+      // Om stjärnan ska svara svart eller grå
       return `<span class="star ${starStyle}">&#9733;</span>`;
-    }).join("");
+    }).join(""); // Ta bort kommatecken när array blir till sträng
   }
 }
 

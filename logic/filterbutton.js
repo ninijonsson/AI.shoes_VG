@@ -5,13 +5,14 @@ function renderFilterButton(parent) {
   const buttonContainer = document.createElement("div");
 
   // Skapar knappen och vad som står på knappen med innerHTML
-  const filterButton = document.createElement('button');
+  const filterButton = document.createElement("button");
   filterButton.innerHTML = `
     <img src="media/icons/filter.png" alt="filter button">
     <p>FILTER</p>
   `;
+
   // Lägger till en klass till knappen för att kunna styla i CSS
-  filterButton.classList.add('filter-button');
+  filterButton.classList.add("filter-button");
 
   const sortBy = document.createElement("div");
   sortBy.classList.add("sortByContainer");
@@ -28,11 +29,18 @@ function renderFilterButton(parent) {
   </select>
   `;
 
-  buttonContainer.classList.add('filter-container');
+  buttonContainer.classList.add("filter-container");
   buttonContainer.appendChild(filterButton);
 
   const container = document.querySelector("#top");
   if (container) {
+    // parentNode = refers to the node in the document tree that is one level above a particular node
+    // Syntax: element.insertBefore(new, existing)
+    // new = the node to insert
+    // existing = node to insert before
+
+    // container.parentNode = <main>-taggen
+    // Denna följer inte strukturen och är därför inte gjord så bra
     container.parentNode.insertBefore(buttonContainer, container.nextSibling);
   }
 
@@ -68,18 +76,21 @@ function renderFilterButton(parent) {
     filterPopup.style.display = "block";
   });
 
-  const closeButton = filterPopup.querySelector('.close-button');
+  const closeButton = filterPopup.querySelector(".close-button");
 
   closeButton.addEventListener("click", function () {
     filterPopup.style.display = "none";
   });
 
-  // Filter products based on price
+  // Selekterar priset vi skriver in
   const inputPrice = document.querySelector(".input-price");
+  // Selekterar alla checkboxar i "MADE IN"
   const checkedCountries = document.querySelectorAll(".country-box");
 
+  // Anropas varje gång vi skriver in något i "MAX PRICE"
   inputPrice.addEventListener("input", filterProducts);
 
+  // För varje ikryssat land triggas en event listener igång
   checkedCountries.forEach(function (checkbox) {
     checkbox.addEventListener("change", filterProducts);
   });
@@ -87,11 +98,14 @@ function renderFilterButton(parent) {
   // Funktion som filtrerar skor baserat på priset man skrivit in,
   // anropas när man skrivit in något i "MAX PRICE"
   function filterProducts() {
-    console.log();
-    const maxPrice = parseInt(inputPrice.value, 10) || 0;
+    // inputPrice är från när vi skriver in MAX PRICE
+    const maxPrice = parseInt(inputPrice.value);
 
+    // Gör om checkedCountries till en array från nodelist för att kunna använda
+    // .filter() och .map()
     const selectedCountryIds = Array.from(checkedCountries).filter(checkbox => checkbox.checked).map(checkbox => parseInt(checkbox.id, 10));
 
+    // Sorteringskoden här för att inte överskridas av filtrering
     const sortSelect = document.getElementById("sort_by");
     const sortOption = sortSelect.value;
     if (sortOption === "lowestPrice") {
@@ -124,27 +138,27 @@ function renderFilterButton(parent) {
       })
     }
 
-    // Filter the products based on the entered price
-    let filteredProducts;
-    // Check if clickedShoeArray is defined and not empty
+    // Filtrera skorna baserat på produktionsland och pris
+    let filteredShoes;
+    // Kontrollerar om clickedShoeArray finns
     if (clickedShoeArray.length > 0) {
-      // Use clickedShoeArray as the source of products if available
-      filteredProducts = clickedShoeArray.filter(product =>
+      // Om true, filtrera med clickedShoeArray (filtrerad från navShoeKinds.js)
+      filteredShoes = clickedShoeArray.filter(product =>
+        // Filtrera om maxPrice är mer eller lika med product.price
         product.price <= maxPrice &&
+        // OCH selectedCountryIds (rad 106) har country_id från product
         (selectedCountryIds.length === 0 || selectedCountryIds.includes(product.country_id))
       );
     }
     else {
-      // Otherwise, use the original SHOES array for filtering
-      filteredProducts = SHOES.filter(product =>
+      // Om inte, utgå ifrån hela SHOES-arrayen
+      filteredShoes = SHOES.filter(product =>
         product.price <= maxPrice &&
         (selectedCountryIds.length === 0 || selectedCountryIds.includes(product.country_id))
       );
     }
 
-    console.log(filteredProducts);
-
-    // Render the filtered products
-    renderShoeList(structureContainers.bottom, filteredProducts);
+    // Renderar de filtrerade skorna på nytt
+    renderShoeList(structureContainers.bottom, filteredShoes);
   }
 };

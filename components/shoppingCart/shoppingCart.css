@@ -30,8 +30,10 @@
     width: 125px;
 }
 
-.shoe_name {
+.shoe_name,
+.total_price_text {
     font-size: 20px;
+    font-family: "Inter_bold";
 }
 
 .shoe_size {

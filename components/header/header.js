@@ -2,10 +2,11 @@ function render_header(parent) {
 
     const header = document.createElement("div");
     header.textContent = "AI.shoes";
-    header.classList.add("h_class");
+    header.classList.add("h_class"); // Styling
     header.classList.add("rubrik");
     parent.appendChild(header);
 
+    // Renderar alla kategorier
     renderNavShoeKinds(parent, KINDS);
 
     const aboutUs = document.createElement("div");
@@ -14,16 +15,7 @@ function render_header(parent) {
     aboutUs.classList.add("about");
     parent.appendChild(aboutUs);
 
-    // parent.innerHTML = `
-    //     <div class="h_class rubrik">AI.shoes</div>
-    //     <div class="h_class all">ALL</div>
-    //     <div class="h_class boots">BOOTS</div>
-    //     <div class="h_class sneakers">SNEAKERS</div>
-    //     <div class="h_class slippers">SLIPPERS</div>
-    //     <div class="h_class about">ABOUT US</div>
-    // `;
-
-    let boots_click = document.querySelector(".boots");
+    let boots_click = document.querySelector(".boots"); // Fick klasserna från renderNavShoeKinds();
     boots_click.addEventListener("click", f1);
 
     let sneaker_click = document.querySelector(".sneakers");
@@ -40,6 +32,7 @@ function render_header(parent) {
 
 };
 
+// Boots
 function f1(event) {
     let n = document.querySelector("nav");
     n.innerHTML = `
@@ -54,11 +47,13 @@ function f1(event) {
         underline_selected.classList.toggle("selected");
     }
 
+    // underline är för styling, strecket under texten i navbaren
     let underline_boots = document.querySelector(".boots");
     underline_boots.classList.toggle("selected");
 
 }
 
+// Sneakers
 function f2(event) {
     let n = document.querySelector("nav");
     n.innerHTML = `
@@ -76,6 +71,7 @@ function f2(event) {
     underline_sneakers.classList.toggle("selected");
 }
 
+// Tofflor
 function f3(event) {
     let n = document.querySelector("nav");
     n.innerHTML = `
@@ -92,6 +88,7 @@ function f3(event) {
     underline_slippers.classList.toggle("selected");
 }
 
+// Alla skor, återställer
 function f4(event) {
     let n = document.querySelector("nav");
     n.innerHTML = `
@@ -108,6 +105,7 @@ function f4(event) {
     underline_all.classList.toggle("selected");
 }
 
+// About us, sker en popup
 function f5(event) {
     let n = document.querySelector("nav");
     n.innerHTML = `
@@ -125,16 +123,14 @@ function f5(event) {
     `;
 
     let closeButton = n.querySelector(".about_popup_closebutton");
-    closeButton.addEventListener("click", f6);
+    closeButton.addEventListener("click", function () {
+        let n = document.querySelector(".about_popup");
+        n.remove();
+    });
 
     let underline_selected = document.querySelector(".selected");
     if (underline_selected !== null) {
         underline_selected.classList.toggle("selected");
     }
-}
-
-function f6() {
-    let n = document.querySelector(".about_popup");
-    n.remove();
 }
 
