@@ -211,6 +211,8 @@ Tar emot en parameter, inventory, som är skon */
 
   // Visar kommentarerna på skorna
   function renderComments(reviews) {
+    // Modifierar arrayen så att varje element ska innehålla detta
+    // Till för DOM
     return reviews.map((review) => `
     <div class="comment">
       <div class="review-info">

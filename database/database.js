@@ -73,7 +73,7 @@ const SHOES = [
   { "id": 40, "name": "Jordan One", "price": 719, "kind_id": 3, "country_id": 3, "file_name": "jordan_one_sneakers.jpg" },
   { "id": 41, "name": "Nike Slipper", "price": 389, "kind_id": 1, "country_id": 3, "file_name": "nike_slipper_tofflor.jpg" },
   { "id": 42, "name": "Stan Smith", "price": 689, "kind_id": 3, "country_id": 6, "file_name": "stan_smith_sneakers.jpg" },
-  { "id": 43, "name": "Balenciaga Wooden", "price": 749, "kind_id": 3, "country_id": 7, "file_name": "Balenciaga_wooden_sandals.jpg" },
+  { "id": 43, "name": "Balenciaga Wooden", "price": 749, "kind_id": 3, "country_id": 7, "file_name": "balenciaga_wooden_sandals.jpg" },
   { "id": 44, "name": "Brown Cowboy", "price": 789, "kind_id": 2, "country_id": 4, "file_name": "brown_cowboy_boots.jpg" },
   { "id": 45, "name": "Dr-martens Brown", "price": 389, "kind_id": 2, "country_id": 6, "file_name": "dr-martens_brown_boots.jpg" },
   { "id": 46, "name": "Green Fish", "price": 879, "kind_id": 3, "country_id": 2, "file_name": "green_fish_sneakers.jpg" },
